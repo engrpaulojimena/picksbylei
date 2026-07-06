@@ -131,6 +131,7 @@ export default function AdminPage() {
       setTiktokUrl("");
       setFetchMsg(null);
       loadProducts(); // refresh count in tab label + manage list
+      router.refresh(); // revalidate home & products pages
       setTimeout(() => setSuccess(false), 3000);
     } else {
       alert("Something went wrong. Please try again!");
@@ -180,6 +181,7 @@ export default function AdminPage() {
       setEditingId(null);
       setEditForm({});
       loadProducts();
+      router.refresh(); // revalidate home & products pages
     } else {
       alert("Something went wrong while saving. Please try again!");
     }
@@ -195,6 +197,7 @@ export default function AdminPage() {
     });
     setDeletingProdId(null);
     loadProducts();
+    router.refresh(); // revalidate home & products pages
   };
 
   // ── Categories ──

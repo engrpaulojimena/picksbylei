@@ -1,1 +1,9 @@
-{}
+{
+  "/products/page": "app/products/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/api/auth/check/route": "app/api/auth/check/route.js",
+  "/api/categories/route": "app/api/categories/route.js",
+  "/page": "app/page.js",
+  "/api/products/route": "app/api/products/route.js",
+  "/api/upload/route": "app/api/upload/route.js"
+}
