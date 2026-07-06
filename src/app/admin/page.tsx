@@ -42,6 +42,7 @@ export default function AdminPage() {
   const [tab, setTab] = useState<"product" | "manage" | "categories">("product");
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+  const [authChecked, setAuthChecked] = useState(false);
 
   // ── Add Product form ──
   const [loading, setLoading] = useState(false);
@@ -77,9 +78,21 @@ export default function AdminPage() {
       .finally(() => setProdLoading(false));
   }, []);
 
+  // ── Client-side auth guard (double protection on top of middleware) ──
   useEffect(() => {
+    fetch("/api/auth/check")
+      .then(r => {
+        if (!r.ok) router.replace("/admin/login");
+        else setAuthChecked(true);
+      })
+      .catch(() => router.replace("/admin/login"));
+  }, [router]);
+
+  useEffect(() => {
+    if (!authChecked) return;
     loadCategories();
-  }, [loadCategories]);
+    loadProducts(); // always pre-load so count is ready
+  }, [authChecked, loadCategories, loadProducts]);
 
   useEffect(() => {
     if (tab === "manage") loadProducts();
@@ -117,6 +130,7 @@ export default function AdminPage() {
       setForm(EMPTY_FORM);
       setTiktokUrl("");
       setFetchMsg(null);
+      loadProducts(); // refresh count in tab label + manage list
       setTimeout(() => setSuccess(false), 3000);
     } else {
       alert("Something went wrong. Please try again!");
@@ -223,7 +237,6 @@ export default function AdminPage() {
     p.name.toLowerCase().includes(prodSearch.toLowerCase())
   );
 
-  // ── Styles ──
   const inputStyle: React.CSSProperties = {
     width: "100%", padding: "11px 14px",
     background: "var(--input-bg)", border: "1px solid var(--border)",
@@ -239,6 +252,15 @@ export default function AdminPage() {
     background: "var(--bg-card)", padding: "24px",
     borderRadius: "20px", border: "1px solid var(--border)",
   };
+
+  // Don't render anything until auth is confirmed
+  if (!authChecked) {
+    return (
+      <div style={{ minHeight: "80vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <Loader size={28} style={{ animation: "spin 1s linear infinite", color: "var(--accent-red)" }} />
+      </div>
+    );
+  }
 
   return (
     <div style={{ maxWidth: "860px", margin: "0 auto", padding: "32px 16px 80px" }}>
