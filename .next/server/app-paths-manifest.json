@@ -1,7 +1,1 @@
-{
-  "/trending/page": "app/trending/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/products/page": "app/products/page.js",
-  "/page": "app/page.js",
-  "/api/categories/route": "app/api/categories/route.js"
-}
+{}
