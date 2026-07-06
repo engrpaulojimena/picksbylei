@@ -97,14 +97,14 @@ export default function ProductCard({ product }: Props) {
       </div>
 
       {/* Content */}
-      <div style={{ padding: "12px", flex: 1, display: "flex", flexDirection: "column", gap: "6px" }}>
+      <div className="product-card-content" style={{ padding: "12px", flex: 1, display: "flex", flexDirection: "column", gap: "6px" }}>
         {product.category && (
           <span style={{ fontSize: "10px", color: "var(--accent-cyan)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.4px" }}>
             {product.category.emoji} {product.category.name}
           </span>
         )}
 
-        <h3 style={{
+        <h3 className="product-card-name" style={{
           fontSize: "13px", fontWeight: 600, lineHeight: 1.4,
           color: "var(--text-primary)",
           display: "-webkit-box", WebkitLineClamp: 2,
@@ -137,11 +137,11 @@ export default function ProductCard({ product }: Props) {
         {/* Price */}
         <div style={{ marginTop: "auto", paddingTop: "6px" }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: "6px", flexWrap: "wrap" }}>
-            <span style={{ fontSize: "18px", fontWeight: 800, color: "var(--accent-red)" }}>
+            <span className="product-card-price" style={{ fontSize: "18px", fontWeight: 800, color: "var(--accent-red)" }}>
               {formatPrice(product.price)}
             </span>
             {product.originalPrice && (
-              <span style={{ fontSize: "12px", color: "var(--text-muted)", textDecoration: "line-through" }}>
+              <span className="product-card-orig-price" style={{ fontSize: "12px", color: "var(--text-muted)", textDecoration: "line-through" }}>
                 {formatPrice(product.originalPrice)}
               </span>
             )}
@@ -150,6 +150,7 @@ export default function ProductCard({ product }: Props) {
           <a
             href={product.affiliateUrl}
             target="_blank" rel="noopener noreferrer"
+            className="product-card-btn"
             style={{
               display: "flex", alignItems: "center", justifyContent: "center", gap: "5px",
               width: "100%", marginTop: "8px",

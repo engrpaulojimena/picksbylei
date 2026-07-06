@@ -122,24 +122,19 @@ a { text-decoration: none; color: inherit; }
   .mobile-hide { display: none !important; }
   .mobile-full { width: 100% !important; }
 
-  /* Product grid: 2 columns on mobile */
+  /* Product grid: 2 tight columns on mobile */
   .product-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
+    gap: 8px !important;
   }
 
-  /* Hero padding */
-  .hero-section {
-    padding: 48px 16px 64px !important;
-  }
+  /* Hero */
+  .hero-section { padding: 48px 16px 64px !important; }
   .hero-title {
     font-size: clamp(32px, 9vw, 56px) !important;
     letter-spacing: -1px !important;
   }
-  .hero-stats {
-    gap: 20px !important;
-    margin-top: 40px !important;
-  }
+  .hero-stats { gap: 20px !important; margin-top: 40px !important; }
 
   /* Navbar */
   .nav-search { display: none !important; }
@@ -150,7 +145,34 @@ a { text-decoration: none; color: inherit; }
   .footer-links { flex-direction: column !important; gap: 24px !important; }
   .footer-top { flex-direction: column !important; }
 
-  /* Admin form */
+  /* ── Admin ── */
   .admin-grid-2 { grid-template-columns: 1fr !important; }
   .admin-grid-3 { grid-template-columns: 1fr 1fr !important; }
+
+  /* Admin page wrapper — tighter side padding */
+  .admin-page { padding: 20px 12px 80px !important; }
+
+  /* Admin tabs — stack icon+text vertically, shrink font */
+  .admin-tabs { gap: 4px !important; padding: 4px !important; }
+  .admin-tab-btn {
+    padding: 8px 4px !important;
+    font-size: 11px !important;
+    gap: 3px !important;
+    flex-direction: column !important;
+  }
+
+  /* Admin product row — hide badge pills that cause overflow */
+  .admin-row-badges { display: none !important; }
+
+  /* ── Product card ── */
+  .product-card-content { padding: 8px !important; gap: 4px !important; }
+  .product-card-name { font-size: 12px !important; }
+  .product-card-price { font-size: 15px !important; }
+  .product-card-orig-price { font-size: 11px !important; }
+  .product-card-btn {
+    padding: 7px 6px !important;
+    font-size: 11px !important;
+    gap: 3px !important;
+    margin-top: 6px !important;
+  }
 }

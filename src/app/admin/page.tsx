@@ -131,7 +131,6 @@ export default function AdminPage() {
       setTiktokUrl("");
       setFetchMsg(null);
       loadProducts(); // refresh count in tab label + manage list
-      router.refresh(); // revalidate home & products pages
       setTimeout(() => setSuccess(false), 3000);
     } else {
       alert("Something went wrong. Please try again!");
@@ -181,7 +180,6 @@ export default function AdminPage() {
       setEditingId(null);
       setEditForm({});
       loadProducts();
-      router.refresh(); // revalidate home & products pages
     } else {
       alert("Something went wrong while saving. Please try again!");
     }
@@ -197,7 +195,6 @@ export default function AdminPage() {
     });
     setDeletingProdId(null);
     loadProducts();
-    router.refresh(); // revalidate home & products pages
   };
 
   // ── Categories ──
@@ -266,7 +263,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div style={{ maxWidth: "860px", margin: "0 auto", padding: "32px 16px 80px" }}>
+    <div className="admin-page" style={{ maxWidth: "860px", margin: "0 auto", padding: "32px 16px 80px" }}>
 
       {/* Header */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "24px" }}>
@@ -289,7 +286,7 @@ export default function AdminPage() {
       </div>
 
       {/* Tabs */}
-      <div style={{
+      <div className="admin-tabs" style={{
         display: "flex", gap: "6px", marginBottom: "24px",
         background: "var(--bg-card)", border: "1px solid var(--border)",
         borderRadius: "14px", padding: "5px",
@@ -299,7 +296,7 @@ export default function AdminPage() {
           { key: "manage",  label: `Products${products.length ? ` (${products.length})` : ""}`, icon: <List size={14} /> },
           { key: "categories", label: "Categories", icon: <Tag size={14} /> },
         ] as const).map(t => (
-          <button key={t.key} onClick={() => setTab(t.key)} style={{
+          <button key={t.key} onClick={() => setTab(t.key)} className="admin-tab-btn" style={{
             flex: 1, padding: "10px 10px", borderRadius: "10px", border: "none",
             background: tab === t.key ? "var(--accent-red)" : "transparent",
             color: tab === t.key ? "#fff" : "var(--text-secondary)",
@@ -615,7 +612,7 @@ function ProductRow({ product: p, categories, isEditing, editForm, setEditForm, 
           <div style={{ fontWeight: 700, fontSize: "14px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
             {p.name}
           </div>
-          <div style={{ display: "flex", gap: "8px", alignItems: "center", marginTop: "3px", flexWrap: "wrap" }}>
+          <div className="admin-row-badges" style={{ display: "flex", gap: "8px", alignItems: "center", marginTop: "3px", flexWrap: "wrap" }}>
             <span style={{ fontSize: "13px", color: "var(--accent-red)", fontWeight: 700 }}>
               ₱{Number(p.price).toLocaleString()}
             </span>
